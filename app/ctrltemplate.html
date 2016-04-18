@@ -1,0 +1,10 @@
+<h1> Aint no crap!!! {{name}} : {{ sex }} and finally race : {{race}} </h1>
+	<br/>
+<br/>
+<br/>
+ <div *ngFor="#hero of heros">
+  <ul>
+ 	<li>{{hero.id}} {{hero.name}}</li>
+ 	</ul>
+ </div>
+ <input type="button" id="btn" (click)="sayHello()" value="go!" />

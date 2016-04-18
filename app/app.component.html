@@ -1,0 +1,12 @@
+<h1>Simple Timesheet App</h1>
+<div> 
+ <li *ngFor="#employee of employees" (click)="addTimeSheet(employee)">
+ 	<span>	{{ employee.id }} </span>
+	<span>	{{ employee.name }} </span>
+ </li>
+ </div>
+<div>Employee timesheet Entry</div>
+
+<div>
+	<timesheetEntry [selectedEmployee]="selectedEmployee"></timesheetEntry>
+ </div>
