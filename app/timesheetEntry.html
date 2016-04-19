@@ -1,12 +1,16 @@
 
+<div *ngIf="timesheetExist">
+	You already entered timesheet for this user
+</div>
+
 <div *ngIf="selectedEmployee != null">
 <h1>Timesheet entry for {{ selectedEmployee?.name }} </h1>
 
 <div><span>Monday</span><span><input type="text" [(ngModel)]="currentTimesheet.monday" id="monday"></span></div>
-<div><span>Tuesday</span><span><input type="text" id="currentTimesheet.tuesday"></span></div>
-<div><span>Wednesday</span><span><input type="text" id="wednesday"></span></div>
-<div><span>Thursday</span><span><input type="text" id="thursday"></span></div>
-<div><span>Friday</span><span><input type="text" id="friday"></span></div>
-<div><span>Saturday</span><span><input type="text" id="saturday"></span></div>
+<div><span>Tuesday</span><span><input type="text" [(ngModel)]="currentTimesheet.tuesday" id="currentTimesheet.tuesday"></span></div>
+<div><span>Wednesday</span><span><input type="text" [(ngModel)]="currentTimesheet.wednesday" id="wednesday"></span></div>
+<div><span>Thursday</span><span><input type="text" [(ngModel)]="currentTimesheet.thursday" id="thursday"></span></div>
+<div><span>Friday</span><span><input type="text" [(ngModel)]="currentTimesheet.friday" id="friday"></span></div>
+<div><span>Saturday</span><span><input type="text" [(ngModel)]="currentTimesheet.saturday" id="saturday"></span></div>
 
-<input type='button' value="Save" (click)="saveTimesheet()"/> <input type='button' value="Cancel"/> 
+<input type='button' value="Save" (click)="saveTimesheet()"/> <input type='button' value="Cancel" (click)="clearTimesheet()"/> 

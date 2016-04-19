@@ -3,7 +3,7 @@ import {Http, Response} from 'angular2/http';
 import 'rxjs/Rx'; import 'rxjs/Rx';
 import { TimeSheetEntryComponent } from 'app/timesheetComponent';
 import { Employee } from 'app/Employees';
-
+import { Timesheet } from 'app/timesheet';
 
 @Component({
     selector: 'my-app',
@@ -15,10 +15,34 @@ export class AppComponent {
 
 	employees: Employee[]; 
 	selectedEmployee : Employee;
+	savedTimesheet: number[] = [];
+	hideIt: boolean = false;
+	timesheetEntered: boolean = false;
 
 	ngOnInit()
 	{
 		this.getEmployee();
+	}
+	
+	handleTimeSheetChanged(timesheet : Timesheet)
+	{
+		console.log(timesheet);
+		
+		if (this.findSaveTimesheet(timesheet.id))
+		{
+			this.savedTimesheet.push(timesheet.id);
+			console.log(this.savedTimesheet);
+		}
+	}
+
+	findSaveTimesheet(id : number)
+	{
+		var index: number = this.savedTimesheet.indexOf(id, 0);
+		if (index != -1)
+		{
+			return false;
+		}
+		return true; 
 	}
 
 	constructor(private http : Http)
@@ -38,8 +62,13 @@ export class AppComponent {
 	};
 
 	addTimeSheet(emp : Employee)
-	{
+	{		
 		this.selectedEmployee = emp;
-		console.log(emp);
-	}
+		if (!this.findSaveTimesheet(emp.id)) {
+			this.timesheetEntered = true;
+		}
+		else {
+			this.timesheetEntered = false;
+		}
+	};
 }
